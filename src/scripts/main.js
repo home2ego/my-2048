@@ -10,6 +10,9 @@ const messageWin = document.querySelector('.message-win');
 const messageLose = document.querySelector('.message-lose');
 const messageStart = document.querySelector('.message-start');
 
+let touchStartX = 0;
+let touchStartY = 0;
+
 buttonStart.addEventListener('click', () => {
   if (buttonStart.classList.contains('start')) {
     game.start();
@@ -46,6 +49,47 @@ document.addEventListener('keydown', (e) => {
       break;
     default:
       return;
+  }
+
+  updateUI();
+});
+
+document.addEventListener(
+  'touchstart',
+  (e) => {
+    if (game.getStatus() !== GAME_STATUS.PLAYING) {
+      return;
+    }
+    e.preventDefault();
+
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+  },
+  { passive: false }
+);
+
+document.addEventListener('touchend', (e) => {
+  if (game.getStatus() !== GAME_STATUS.PLAYING) {
+    return;
+  }
+
+  const touch = e.changedTouches[0];
+  const touchEndX = touch.clientX;
+  const touchEndY = touch.clientY;
+
+  const deltaX = touchEndX - touchStartX;
+  const deltaY = touchEndY - touchStartY;
+  const minDistance = 30;
+
+  if (Math.abs(deltaX) < minDistance && Math.abs(deltaY) < minDistance) {
+    return;
+  }
+
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    deltaX > 0 ? game.moveRight() : game.moveLeft();
+  } else {
+    deltaY > 0 ? game.moveDown() : game.moveUp();
   }
 
   updateUI();
