@@ -57,9 +57,14 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener(
   'touchstart',
   (e) => {
+    if (e.target.closest('.button')) {
+      return;
+    }
+
     if (game.getStatus() !== GAME_STATUS.PLAYING) {
       return;
     }
+
     e.preventDefault();
 
     const touch = e.touches[0];
