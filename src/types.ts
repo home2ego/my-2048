@@ -26,8 +26,12 @@ export type Direction = "up" | "down" | "left" | "right";
 
 export type MoveType = "move_up" | "move_down" | "move_left" | "move_right";
 
+export type ReducerActionMove = {
+  type: MoveType;
+};
+
 export type ReducerAction =
-  | { type: MoveType }
+  | ReducerActionMove
   | { type: "create_tile"; tile: Omit<Tile, "id"> }
   | { type: "clean_up" }
   | { type: "reset_game" }

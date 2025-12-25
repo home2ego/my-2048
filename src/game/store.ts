@@ -1,7 +1,8 @@
 import type {
+  Direction,
   GameStatus,
   Position,
-  ReducerAction,
+  ReducerActionMove,
   ReducerState,
 } from "../types";
 import {
@@ -10,6 +11,7 @@ import {
   TILE_COUNT,
   WIN_TILE,
 } from "./constants";
+import { elAnnouncements } from "./dom";
 import { isReducedMotion } from "./motion";
 import { createInitialState, reducer } from "./reducer";
 import { render } from "./render";
@@ -88,7 +90,11 @@ function spawnRandomTile(state: ReducerState): ReducerState {
   return reducer(state, { type: "create_tile", tile: { position, value: 2 } });
 }
 
-function finalizeMove() {
+export function announce(message: string) {
+  if (elAnnouncements) elAnnouncements.textContent = message;
+}
+
+function finalizeMove(direction: Direction | "") {
   state = reducer(state, { type: "clean_up" });
 
   // Don't spawn a new tile if won
@@ -98,6 +104,18 @@ function finalizeMove() {
   }
 
   render(state);
+
+  if (state.status === "ongoing") {
+    announce(`Moved ${direction}. Score: ${state.score}. New tile 2 added.`);
+  } else if (state.status === "won") {
+    announce(
+      `You won! Reached 2048. Score: ${state.score}. Press R or click Play again to start a new game.`,
+    );
+  } else if (state.status === "lost") {
+    announce(
+      `Game over. Final score: ${state.score}. Press R or click Play again to start a new game.`,
+    );
+  }
 }
 
 export function startGame(): void {
@@ -107,9 +125,11 @@ export function startGame(): void {
   state = setStatusIfNeeded(state);
 
   render(state);
+
+  announce(`New game started. Score: ${state.score}`);
 }
 
-export function dispatch(action: ReducerAction) {
+export function dispatch(action: ReducerActionMove) {
   const previousBest = state.bestScore; // Old best score
   state = reducer(state, action);
 
@@ -118,18 +138,18 @@ export function dispatch(action: ReducerAction) {
     localStorage.setItem(BEST_SCORE_KEY, String(state.bestScore));
   }
 
-  if (action.type.startsWith("move_")) {
-    state = setStatusIfNeeded(state);
-  }
+  state = setStatusIfNeeded(state);
 
   render(state);
 
   if (!state.hasChanged) return;
 
+  const direction = action.type.replace("move_", "") as Direction;
+
   if (isReducedMotion) {
-    finalizeMove();
+    finalizeMove(direction);
   } else {
     // Wait for move/merge animation if not reduced motion, then finalize and spawn tile
-    window.setTimeout(finalizeMove, MERGE_DURATION);
+    window.setTimeout(() => finalizeMove(direction), MERGE_DURATION);
   }
 }

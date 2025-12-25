@@ -13,66 +13,82 @@
   </head>
 
   <body>
-    <div class="twenty48">
+    <main class="main">
       <header class="header">
-        <h1>2048</h1>
+        <h1 class="title--lg">2048</h1>
 
-        <div class="score" role="status">
-          Score
-          <div id="scoreValue" class="score__value">0</div>
-        </div>
+        <dl class="score">
+          <dt>Score</dt>
+          <dd>
+            <output id="scoreValue" class="score__value"> 0 </output>
+          </dd>
+        </dl>
 
-        <div class="score" role="status">
-          Best
-          <div id="bestValue" class="score__value">0</div>
-        </div>
+        <dl class="score">
+          <dt>Best</dt>
+          <dd>
+            <output id="bestValue" class="score__value">0</output>
+          </dd>
+        </dl>
       </header>
 
-      <main>
-        <div class="board" id="board">
-          <div class="splash hidden" id="splash">
-            <h1 class="splash__title" id="splashTitle"></h1>
+      <section class="board" id="board">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="splashTitle"
+          class="splash hidden"
+          id="splash"
+        >
+          <h2 class="splash__title title--lg" id="splashTitle"></h2>
 
-            <button class="restart" id="restart" type="button">
-              Play again
-            </button>
-          </div>
-
-          <div class="tiles" id="tiles"></div>
-
-          <div class="grid" aria-hidden="true">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-          </div>
+          <button class="restart" id="restart" type="button">Play again</button>
         </div>
 
-        <div class="instructions">
-          <h2 class="instructions__title">🚀 HOW TO PLAY:</h2>
+        <div class="tiles" id="tiles"></div>
 
-          <p>
-            Move tiles with arrow keys
-            <span class="instructions__bold">↑ ↓ ← →</span> or swipes.
-            <br />
-            Press <span class="instructions__bold">R</span> to restart. Merge
-            equal numbers to reach <span class="instructions__bold">2048</span>.
-          </p>
+        <div class="grid" aria-hidden="true">
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section class="instructions">
+        <h2 class="instructions__title title--md">
+          <span aria-hidden="true">🚀</span> HOW TO PLAY:
+        </h2>
+
+        <p class="text">
+          Move tiles with the arrow keys
+          <span class="instructions__keys">
+            <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd>
+          </span>
+          <br />
+          Swipe on touch devices.
+          <br />
+          Press <kbd>R</kbd> to restart the game.
+          <br />
+          Merge equal numbers to reach
+          <strong class="instructions__accent">2048</strong>.
+        </p>
+      </section>
+
+      <div id="announcements" aria-live="polite" class="sr-only"></div>
+    </main>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

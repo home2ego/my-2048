@@ -1,6 +1,8 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
+/* #region globals */
+
 :root {
   /* Geometry */
   --cell: 64px;
@@ -23,11 +25,49 @@ body {
 
 h1,
 h2,
-p {
+p,
+dl,
+dd {
   margin: 0;
 }
 
-h1 {
+kbd {
+  padding: 1px 6px;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: $text-color-dark;
+
+  background-color: $text-color-primary;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* #endregion globals */
+
+/* #region screen readers only */
+
+.sr-only {
+  position: absolute;
+  top: 0;
+
+  overflow: hidden;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(50%);
+}
+
+/* #endregion screen readers only */
+
+/* #region typography */
+
+.title--lg {
   font-size: 40px;
 
   @include on-tablet {
@@ -35,16 +75,20 @@ h1 {
   }
 }
 
-h2 {
+.title--md {
   font-size: 20px;
 }
 
-p {
+.text {
   font-size: 16px;
-  line-height: 22px;
+  line-height: 28px;
 }
 
-.twenty48 {
+/* #endregion typography */
+
+/* #region main & header */
+
+.main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,6 +120,10 @@ p {
   }
 }
 
+/* #endregion main & header */
+
+/* #region score */
+
 .score {
   border: 8px solid $secondary-background;
   border-radius: 8px;
@@ -94,6 +142,7 @@ p {
   }
 
   &__value {
+    display: block;
     margin-top: 4px;
     font-size: 20px;
 
@@ -103,10 +152,18 @@ p {
   }
 }
 
+/* #endregion score */
+
+/* #region board */
+
 .board {
   touch-action: none;
   position: relative;
 }
+
+/* #endregion board */
+
+/* #region splash */
 
 .splash.hidden {
   display: none;
@@ -161,9 +218,13 @@ p {
 
   &:focus-visible {
     outline: 4px solid $text-color-accent;
-    outline-offset: 0px;
+    outline-offset: 0;
   }
 }
+
+/* #endregion splash */
+
+/* #region tiles */
 
 .tiles {
   user-select: none;
@@ -171,6 +232,7 @@ p {
   z-index: 10;
   inset: 0;
 }
+
 .tile {
   pointer-events: none;
 
@@ -203,6 +265,7 @@ p {
     }
   }
 }
+
 .tile128,
 .tile256,
 .tile512 {
@@ -212,6 +275,7 @@ p {
     font-size: 44px;
   }
 }
+
 .tile1024,
 .tile2048 {
   font-size: 22px;
@@ -220,6 +284,10 @@ p {
     font-size: 32px;
   }
 }
+
+/* #endregion tiles */
+
+/* #region grid */
 
 .grid {
   display: flex;
@@ -232,6 +300,7 @@ p {
   background-color: $secondary-background;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
 .cell {
   width: var(--cell);
   height: var(--cell);
@@ -244,6 +313,10 @@ p {
   }
 }
 
+/* #endregion grid */
+
+/* #region instructions */
+
 .instructions {
   padding-block: 16px;
 
@@ -251,8 +324,14 @@ p {
     margin-bottom: 16px;
   }
 
-  &__bold {
+  &__keys {
+    white-space: nowrap;
+  }
+
+  &__accent {
     font-weight: 800;
     color: $text-color-accent;
   }
 }
+
+/* #endregion instructions */

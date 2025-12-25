@@ -15,3 +15,4 @@ export const elSplash = getEl<HTMLDivElement>("splash");
 export const elSplashTitle = getEl<HTMLHeadingElement>("splashTitle");
 export const elRestart = getEl<HTMLButtonElement>("restart");
 export const elBoard = getEl<HTMLDivElement>("board");
+export const elAnnouncements = getEl<HTMLDivElement>("announcements");
