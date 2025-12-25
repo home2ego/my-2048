@@ -3,86 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2048</title>
-    <link rel="stylesheet" href="./src/styles/main.scss" />
+    <title>Play 2048 - by Artem Zhyrnyi</title>
+    <link rel="stylesheet" href="./src/styles/styles.scss" />
     <link rel="icon" type="image/svg+xml" href="./2048.svg" />
     <meta
       name="description"
-      content="A browser-based puzzle game where you combine tiles to reach the 2048 tile!"
+      content="Fully functional clone of the popular 2048 game, built with HTML, SCSS and TypeScript."
     />
   </head>
 
   <body>
-    <div class="container">
-      <div class="game-header">
+    <div class="twenty48">
+      <header class="header">
         <h1>2048</h1>
 
-        <div class="controls">
-          <p class="info">
-            SCORE:
-            <span class="game-score">0</span>
-          </p>
-
-          <p class="info">
-            BEST:
-            <span class="game-best">0</span>
-          </p>
+        <div class="score" role="status">
+          Score
+          <div id="scoreValue" class="score__value">0</div>
         </div>
 
-        <button class="button start">START</button>
-      </div>
+        <div class="score" role="status">
+          Best
+          <div id="bestValue" class="score__value">0</div>
+        </div>
+      </header>
 
-      <table class="game-field">
-        <tbody>
-          <tr class="field-row">
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-          </tr>
+      <main>
+        <div class="board" id="board">
+          <div class="splash hidden" id="splash">
+            <h1 class="splash__title" id="splashTitle"></h1>
 
-          <tr class="field-row">
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-          </tr>
+            <button class="restart" id="restart" type="button">
+              Play again
+            </button>
+          </div>
 
-          <tr class="field-row">
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-          </tr>
+          <div class="tiles" id="tiles"></div>
 
-          <tr class="field-row">
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-          </tr>
-        </tbody>
-      </table>
+          <div class="grid" aria-hidden="true">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+          </div>
+        </div>
 
-      <div>
-        <p class="message message-win hidden">You Win!</p>
-        <p class="message message-lose hidden">You lose! Restart the game?</p>
-        <p class="message message-start">
-          Press
-          <span>START</span>
-          to begin!
-        </p>
-      </div>
+        <div class="instructions">
+          <h2 class="instructions__title">🚀 HOW TO PLAY:</h2>
 
-      <p class="instructions">
-        <span>HOW TO PLAY:</span>
-        Use arrow keys (
-        <span>↑ ↓ ← →</span>
-        ) to move tiles. Merge tiles with the same numbers into one until you
-        reach 2048!
-      </p>
+          <p>
+            Move tiles with arrow keys
+            <span class="instructions__bold">↑ ↓ ← →</span> or swipes.
+            <br />
+            Press <span class="instructions__bold">R</span> to restart. Merge
+            equal numbers to reach <span class="instructions__bold">2048</span>.
+          </p>
+        </div>
+      </main>
     </div>
 
-    <script type="module" src="./src/scripts/main.js"></script>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

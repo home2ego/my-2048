@@ -1,0 +1,258 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+:root {
+  /* Geometry */
+  --cell: 64px;
+  --border: 8px;
+  --gap: 8px;
+
+  @include on-tablet {
+    --cell: 100px;
+    --border: 16px;
+    --gap: 16px;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: $text-color-primary;
+  background-color: $primary-background;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 40px;
+
+  @include on-tablet {
+    font-size: 60px;
+  }
+}
+
+h2 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.twenty48 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 296px;
+  min-height: 100svh;
+  margin: 0 auto;
+  padding-inline: 12px;
+
+  @include on-tablet {
+    max-width: 480px;
+  }
+}
+
+.header {
+  display: flex;
+  column-gap: 6px;
+  align-items: center;
+
+  margin-bottom: 16px;
+  padding-block: 16px;
+
+  @include on-tablet {
+    column-gap: 8px;
+  }
+
+  & > * {
+    flex: 1;
+  }
+}
+
+.score {
+  border: 8px solid $secondary-background;
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: $text-color-secondary;
+  text-align: center;
+  text-transform: uppercase;
+
+  background-color: $secondary-background;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  @include on-tablet {
+    font-size: 16px;
+  }
+
+  &__value {
+    margin-top: 4px;
+    font-size: 20px;
+
+    @include on-tablet {
+      font-size: 28px;
+    }
+  }
+}
+
+.board {
+  touch-action: none;
+  position: relative;
+}
+
+.splash.hidden {
+  display: none;
+}
+
+.splash {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  &__title {
+    color: $text-color-dark;
+  }
+}
+
+.win {
+  background-color: rgba(0, 255, 100, 0.6);
+}
+
+.lost {
+  background-color: rgba(255, 0, 0, 0.6);
+}
+
+.restart {
+  cursor: pointer;
+
+  padding: 8px 16px;
+  border: 8px solid $secondary-background;
+  border-radius: 8px;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: $text-color-secondary;
+
+  background-color: $secondary-background;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  transition: border-color 0.18s, background-color 0.18s;
+
+  &:hover {
+    border-color: $primary-background;
+    background-color: $primary-background;
+  }
+
+  &:focus-visible {
+    outline: 4px solid $text-color-accent;
+    outline-offset: 0px;
+  }
+}
+
+.tiles {
+  user-select: none;
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+}
+.tile {
+  pointer-events: none;
+
+  position: absolute;
+  translate: 0 0;
+  scale: 1;
+
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 8px;
+
+  font-size: 32px;
+  font-weight: 700;
+  line-height: var(--cell);
+  text-align: center;
+
+  transition: translate $move-duration, scale $pop-duration;
+
+  @include on-tablet {
+    font-size: 48px;
+  }
+
+  @include reduce-motion {
+    transition: none;
+  }
+
+  @each $value, $color in $tile-colors {
+    &#{$value} {
+      background-color: $color;
+    }
+  }
+}
+.tile128,
+.tile256,
+.tile512 {
+  font-size: 26px;
+
+  @include on-tablet {
+    font-size: 44px;
+  }
+}
+.tile1024,
+.tile2048 {
+  font-size: 22px;
+
+  @include on-tablet {
+    font-size: 32px;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+
+  border: var(--border) solid $secondary-background;
+  border-radius: 8px;
+
+  background-color: $secondary-background;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.cell {
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 8px;
+  background-color: $cell-background;
+
+  @include on-tablet {
+    width: var(--cell);
+    height: var(--cell);
+  }
+}
+
+.instructions {
+  padding-block: 16px;
+
+  &__title {
+    margin-bottom: 16px;
+  }
+
+  &__bold {
+    font-weight: 800;
+    color: $text-color-accent;
+  }
+}

@@ -3,13 +3,26 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+   "scripts": {
+    "dev": "vite --open",
+    "check": "biome check --write",
+    "stylelint": "stylelint '**/*.{css,scss}' --fix",
+    "build": "tsc -b && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "sass-embedded": "^1.85.1",
-    "vite": "^6.2.0"
+    "@biomejs/biome": "^2.2.5",
+    "sass-embedded": "^1.93.2",
+    "stylelint": "^16.25.0",
+    "stylelint-config-clean-order": "^8.0.0",
+    "stylelint-config-recommended-scss": "^16.0.2",
+    "vite-plugin-html": "^3.2.2",
+    "typescript": "~5.9.3",
+    "vite": "npm:rolldown-vite@7.2.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:rolldown-vite@7.2.5"
+    }
   }
 }
