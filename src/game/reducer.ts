@@ -99,7 +99,10 @@ export function reducer(
     }
 
     case "reset_game":
-      return createInitialState();
+      return {
+        ...createInitialState(),
+        bestScore: prev.bestScore,
+      };
 
     case "update_status":
       return { ...prev, status: action.status };
