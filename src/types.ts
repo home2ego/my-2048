@@ -22,12 +22,10 @@ export interface ReducerState {
   status: GameStatus;
 }
 
-export type Direction = "up" | "down" | "left" | "right";
-
-export type MoveType = "move_up" | "move_down" | "move_left" | "move_right";
+export type Move = "up" | "down" | "left" | "right";
 
 export type ReducerActionMove = {
-  type: MoveType;
+  type: Move;
 };
 
 export type ReducerAction =

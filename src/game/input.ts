@@ -1,4 +1,4 @@
-import type { MoveType } from "../types";
+import type { Move } from "../types";
 import { MERGE_DURATION, SWIPE_THRESHOLD } from "./constants";
 import { elBoard, elRestart } from "./dom";
 import { isReducedMotion } from "./motion";
@@ -6,7 +6,7 @@ import { dispatch, getState, restartGame, startGame } from "./store";
 
 let moveLocked = false;
 
-function tryMove(type: MoveType) {
+function tryMove(type: Move) {
   if (moveLocked) return;
   if (getState().status !== "ongoing") return;
 
@@ -32,16 +32,16 @@ function handleKeyDown(e: KeyboardEvent) {
 
   switch (e.code) {
     case "ArrowUp":
-      tryMove("move_up");
+      tryMove("up");
       break;
     case "ArrowDown":
-      tryMove("move_down");
+      tryMove("down");
       break;
     case "ArrowLeft":
-      tryMove("move_left");
+      tryMove("left");
       break;
     case "ArrowRight":
-      tryMove("move_right");
+      tryMove("right");
       break;
     case "KeyR":
       if (!isReloadShortcut) restartGame();
@@ -67,9 +67,9 @@ function handleTouchEnd(e: TouchEvent) {
   if (absX < SWIPE_THRESHOLD && absY < SWIPE_THRESHOLD) return;
 
   if (absX > absY) {
-    tryMove(deltaX > 0 ? "move_right" : "move_left");
+    tryMove(deltaX > 0 ? "right" : "left");
   } else {
-    tryMove(deltaY > 0 ? "move_down" : "move_up");
+    tryMove(deltaY > 0 ? "down" : "up");
   }
 
   touchStartX = 0;

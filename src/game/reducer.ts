@@ -1,6 +1,6 @@
 import type {
   Board,
-  Direction,
+  Move,
   ReducerAction,
   ReducerState,
   Tile,
@@ -46,16 +46,16 @@ export function reducer(
   action: ReducerAction,
 ): ReducerState {
   switch (action.type) {
-    case "move_up":
+    case "up":
       return moveTiles(prev, "up");
 
-    case "move_down":
+    case "down":
       return moveTiles(prev, "down");
 
-    case "move_left":
+    case "left":
       return moveTiles(prev, "left");
 
-    case "move_right":
+    case "right":
       return moveTiles(prev, "right");
 
     case "clean_up": {
@@ -109,7 +109,7 @@ export function reducer(
   }
 }
 
-function moveTiles(prev: ReducerState, direction: Direction): ReducerState {
+function moveTiles(prev: ReducerState, direction: Move): ReducerState {
   const isVertical = direction === "up" || direction === "down";
   const isReverse = direction === "down" || direction === "right";
 

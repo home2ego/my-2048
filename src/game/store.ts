@@ -1,6 +1,6 @@
 import type {
-  Direction,
   GameStatus,
+  Move,
   Position,
   ReducerActionMove,
   ReducerState,
@@ -22,9 +22,7 @@ export function getState(): ReducerState {
   return state;
 }
 
-function computeStatus(state: ReducerState): GameStatus {
-  if (state.status !== "ongoing") return state.status;
-
+function checkStatus(state: ReducerState): GameStatus {
   // Win
   for (const id of state.tilesByIds) {
     if (state.tiles[id].value >= WIN_TILE) return "won";
@@ -33,39 +31,44 @@ function computeStatus(state: ReducerState): GameStatus {
   // Any empty cell - ongoing
   for (let y = 0; y < TILE_COUNT; y++) {
     for (let x = 0; x < TILE_COUNT; x++) {
-      if (state.board[y][x] === null) return "ongoing";
+      const id = state.board[y][x];
+
+      if (id === null) return "ongoing";
     }
   }
 
   // Any merge available - ongoing
-  const max = TILE_COUNT - 1;
+  const lastIndex = TILE_COUNT - 1;
 
   for (let y = 0; y < TILE_COUNT; y++) {
     for (let x = 0; x < TILE_COUNT; x++) {
-      const id = state.board[y][x] as string;
-      const v = state.tiles[id].value;
+      const id = state.board[y][x];
 
-      if (x < max) {
-        const horizontalId = state.board[y][x + 1] as string;
-        if (state.tiles[horizontalId].value === v) return "ongoing";
+      if (id === null) continue;
+
+      const value = state.tiles[id].value;
+
+      // Horizontal check
+      if (x < lastIndex) {
+        const horizontalId = state.board[y][x + 1];
+
+        if (horizontalId === null) continue;
+
+        if (state.tiles[horizontalId].value === value) return "ongoing";
       }
 
-      if (y < max) {
-        const verticalId = state.board[y + 1][x] as string;
-        if (state.tiles[verticalId].value === v) return "ongoing";
+      // Vertical check
+      if (y < lastIndex) {
+        const verticalId = state.board[y + 1][x];
+
+        if (verticalId === null) continue;
+
+        if (state.tiles[verticalId].value === value) return "ongoing";
       }
     }
   }
 
   return "lost";
-}
-
-function setStatusIfNeeded(state: ReducerState): ReducerState {
-  const status = computeStatus(state);
-
-  return status === state.status
-    ? state
-    : reducer(state, { type: "update_status", status });
 }
 
 function getEmptyCells(state: ReducerState): Position[] {
@@ -93,32 +96,41 @@ function spawnRandomTile(state: ReducerState): ReducerState {
   });
 }
 
-function announce(message: string) {
-  elAnnouncements.textContent = message;
+function announceMove(status: GameStatus, direction: Move) {
+  const message = {
+    ongoing: `Moved ${direction}. Score: ${state.score}. New tile 2 added.`,
+    won: `You won! Reached 2048. Score: ${state.score}. Press R or click Play again to start a new game.`,
+    lost: `Game over. Final score: ${state.score}. Press R or click Play again to start a new game.`,
+  };
+
+  elAnnouncements.textContent = message[status];
 }
 
-function finalizeMove(direction: Direction | "") {
+function finalizeMove(direction: Move) {
+  // Clean up merged tiles
   state = reducer(state, { type: "clean_up" });
 
-  // Don't spawn a new tile if won
-  if (state.status === "ongoing") {
+  // Update best score
+  if (state.score > state.bestScore) {
+    state.bestScore = state.score;
+    localStorage.setItem(BEST_SCORE_KEY, String(state.bestScore));
+  }
+
+  // Spawn new tile if game ongoing
+  let status = checkStatus(state);
+  if (status === "ongoing") {
     state = spawnRandomTile(state);
-    state = setStatusIfNeeded(state);
+    status = checkStatus(state);
   }
 
+  // Update status
+  if (status !== state.status) {
+    state = reducer(state, { type: "update_status", status });
+  }
+
+  // Render and announce
   render(state);
-
-  if (state.status === "ongoing") {
-    announce(`Moved ${direction}. Score: ${state.score}. New tile 2 added.`);
-  } else if (state.status === "won") {
-    announce(
-      `You won! Reached 2048. Score: ${state.score}. Press R or click Play again to start a new game.`,
-    );
-  } else if (state.status === "lost") {
-    announce(
-      `Game over. Final score: ${state.score}. Press R or click Play again to start a new game.`,
-    );
-  }
+  announceMove(status, direction);
 }
 
 export function restartGame(): void {
@@ -133,30 +145,20 @@ export function startGame(): void {
 
   render(state);
 
-  announce(`New game started. Score: ${state.score}`);
+  elAnnouncements.textContent = `New game started. Score: ${state.score}`;
 }
 
 export function dispatch(action: ReducerActionMove) {
-  const previousBest = state.bestScore; // Old best score
   state = reducer(state, action);
-
-  // Update if the best score updated in this move
-  if (state.bestScore > previousBest) {
-    localStorage.setItem(BEST_SCORE_KEY, String(state.bestScore));
-  }
-
-  state = setStatusIfNeeded(state);
 
   render(state);
 
   if (!state.hasChanged) return;
 
-  const direction = action.type.replace("move_", "") as Direction;
-
   if (isReducedMotion) {
-    finalizeMove(direction);
+    finalizeMove(action.type);
   } else {
     // Wait for move/merge animation if not reduced motion, then finalize and spawn tile
-    window.setTimeout(() => finalizeMove(direction), MERGE_DURATION);
+    window.setTimeout(() => finalizeMove(action.type), MERGE_DURATION);
   }
 }
