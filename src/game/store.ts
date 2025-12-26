@@ -93,8 +93,8 @@ function spawnRandomTile(state: ReducerState): ReducerState {
   });
 }
 
-export function announce(message: string) {
-  if (elAnnouncements) elAnnouncements.textContent = message;
+function announce(message: string) {
+  elAnnouncements.textContent = message;
 }
 
 function finalizeMove(direction: Direction | "") {
@@ -121,11 +121,15 @@ function finalizeMove(direction: Direction | "") {
   }
 }
 
-export function startGame(): void {
+export function restartGame(): void {
   state = reducer(state, { type: "reset_game" });
+
+  startGame();
+}
+
+export function startGame(): void {
   state = spawnRandomTile(state);
   state = spawnRandomTile(state);
-  state = setStatusIfNeeded(state);
 
   render(state);
 

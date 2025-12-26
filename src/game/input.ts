@@ -2,7 +2,7 @@ import type { MoveType } from "../types";
 import { MERGE_DURATION, SWIPE_THRESHOLD } from "./constants";
 import { elBoard, elRestart } from "./dom";
 import { isReducedMotion } from "./motion";
-import { dispatch, getState, startGame } from "./store";
+import { dispatch, getState, restartGame, startGame } from "./store";
 
 let moveLocked = false;
 
@@ -44,7 +44,7 @@ function handleKeyDown(e: KeyboardEvent) {
       tryMove("move_right");
       break;
     case "KeyR":
-      if (!isReloadShortcut) startGame();
+      if (!isReloadShortcut) restartGame();
       break;
   }
 }
@@ -82,7 +82,7 @@ export function initGame() {
   elBoard.addEventListener("touchstart", handleTouchStart, { passive: true });
   elBoard.addEventListener("touchend", handleTouchEnd, { passive: true });
 
-  elRestart.addEventListener("click", startGame);
+  elRestart.addEventListener("click", restartGame);
 
   startGame();
 }
