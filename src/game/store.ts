@@ -81,13 +81,16 @@ function getEmptyCells(state: ReducerState): Position[] {
 }
 
 function spawnRandomTile(state: ReducerState): ReducerState {
-  const empty = getEmptyCells(state);
+  const emptyCells = getEmptyCells(state);
 
-  if (empty.length === 0) return state;
+  if (emptyCells.length === 0) return state;
 
-  const position = empty[(Math.random() * empty.length) | 0];
+  const idx = Math.floor(Math.random() * emptyCells.length);
 
-  return reducer(state, { type: "create_tile", tile: { position, value: 2 } });
+  return reducer(state, {
+    type: "create_tile",
+    tile: { position: emptyCells[idx], value: 2 },
+  });
 }
 
 export function announce(message: string) {
