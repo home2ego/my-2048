@@ -16,22 +16,22 @@ const prevValueById = new Map<string, number>();
 function showSplash(status: GameStatus) {
   if (status === "won") {
     elSplashTitle.textContent = "You won!";
+    elSplash.classList.remove("hidden", "lost");
     elSplash.classList.add("win");
     elRestart.focus();
-    elSplash.classList.remove("hidden", "lost");
     return;
   }
 
   if (status === "lost") {
     elSplashTitle.textContent = "Game over";
+    elSplash.classList.remove("hidden", "win");
     elSplash.classList.add("lost");
     elRestart.focus();
-    elSplash.classList.remove("hidden", "win");
     return;
   }
 
-  elSplash.classList.add("hidden");
   elSplash.classList.remove("win", "lost");
+  elSplash.classList.add("hidden");
 }
 
 function ensureTileEl(id: string): HTMLDivElement {
