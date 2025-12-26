@@ -99,10 +99,7 @@ export function reducer(
     }
 
     case "reset_game":
-      return {
-        ...createInitialState(),
-        bestScore: prev.bestScore,
-      };
+      return createInitialState();
 
     case "update_status":
       return { ...prev, status: action.status };
@@ -176,8 +173,14 @@ function moveTiles(prev: ReducerState, direction: Move): ReducerState {
     }
   }
 
-  const bestScore = Math.max(score, prev.bestScore);
   const tilesByIds = Object.keys(tiles);
+
+  let bestScore = prev.bestScore;
+
+  if (score > bestScore) {
+    bestScore = score;
+    localStorage.setItem(BEST_SCORE_KEY, String(bestScore));
+  }
 
   return { ...prev, board, tiles, tilesByIds, hasChanged, score, bestScore };
 }

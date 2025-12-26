@@ -5,12 +5,7 @@ import type {
   ReducerActionMove,
   ReducerState,
 } from "../types";
-import {
-  BEST_SCORE_KEY,
-  MERGE_DURATION,
-  TILE_COUNT,
-  WIN_TILE,
-} from "./constants";
+import { MERGE_DURATION, TILE_COUNT, WIN_TILE } from "./constants";
 import { elAnnouncements } from "./dom";
 import { isReducedMotion } from "./motion";
 import { createInitialState, reducer } from "./reducer";
@@ -109,12 +104,6 @@ function announceMove(status: GameStatus, direction: Move) {
 function finalizeMove(direction: Move) {
   // Clean up merged tiles
   state = reducer(state, { type: "clean_up" });
-
-  // Update best score
-  if (state.score > state.bestScore) {
-    state.bestScore = state.score;
-    localStorage.setItem(BEST_SCORE_KEY, String(state.bestScore));
-  }
 
   // Spawn new tile if game ongoing
   let status = checkStatus(state);
