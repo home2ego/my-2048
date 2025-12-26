@@ -134,30 +134,28 @@ function moveTiles(prev: ReducerState, direction: Move): ReducerState {
 
       const currentTile = prev.tiles[id];
 
+      // Determine target position
+      const targetX = isVertical ? lineIdx : nextPos;
+      const targetY = isVertical ? nextPos : lineIdx;
+
       // Merge logic
       if (previousTile && previousTile.value === currentTile.value) {
         const mergedValue = previousTile.value * 2;
         score += mergedValue;
 
-        tiles[previousTile.id] = { ...previousTile, value: mergedValue };
+        tiles[previousTile.id] = {
+          ...previousTile,
+          value: mergedValue,
+        };
 
-        const mX = isVertical ? lineIdx : isReverse ? nextPos + 1 : nextPos - 1;
-        const mY = isVertical
-          ? isReverse
-            ? nextPos + 1
-            : nextPos - 1
-          : lineIdx;
+        tiles[id] = { ...currentTile, position: [targetX, targetY] };
 
-        tiles[id] = { ...currentTile, position: [mX, mY] };
         previousTile = undefined;
         hasChanged = true;
         continue;
       }
 
       // Movement logic
-      const targetX = isVertical ? lineIdx : nextPos;
-      const targetY = isVertical ? nextPos : lineIdx;
-
       board[targetY][targetX] = id;
       tiles[id] = { ...currentTile, position: [targetX, targetY] };
 
