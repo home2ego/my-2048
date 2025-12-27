@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/types.ts","./src/game/constants.ts","./src/game/dom.ts","./src/game/input.ts","./src/game/motion.ts","./src/game/reducer.ts","./src/game/render.ts","./src/game/store.ts"],"version":"5.9.3"}
