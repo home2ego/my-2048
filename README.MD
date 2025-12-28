@@ -6,6 +6,10 @@ This project started as a fun challenge to implement game logic in **vanilla Typ
 
 **[Play it now!](https://my-2048.pages.dev/)** 🚀
 
+### Quick Demo
+
+![2048 Gameplay](docs/gameplay.gif)
+
 ## 📦 Technologies
 
 - `TypeScript`
