@@ -1,4 +1,4 @@
-# 🎮 2048 Game
+# 2048 Game
 
 A clone of the classic **2048** puzzle game, built from scratch with a strong focus on smooth animations, accessibility, and cross-device compatibility.
 
@@ -67,7 +67,7 @@ Building this little game taught me way more than I expected:
 
 - How much you can actually achieve with just vanilla TypeScript - no need for a big framework for everything
 - Getting animations to feel "buttery smooth" is all about the small details:
-    - Using `transform` (which only triggers the composite stage in the **Rendering Pipeline**) instead of `left/top` that force layout and paint steps
+    - Using `transform` (which only triggers the composite stage in the **Rendering (Pixel) Pipeline**) instead of `left/top` that force layout and paint steps
     - Keeping DOM updates minimal
     - Letting the browser handle the animation work with CSS transitions instead of JavaScript
 - Touch swipe detection is trickier than it looks - figuring out the direction reliably without false positives took a few iterations
@@ -77,7 +77,8 @@ Overall, it reminded me why I love building things: you start with a blank page 
 
 ## 🚦 Running the Project
 
-1. `git clone https://github.com/home2ego/my-2048.git`
-2. `cd my-2048`
-3. `npm install` (or `pnpm install`/`yarn install`)
-4. `npm run dev` (or `pnpm dev`/`yarn dev`)
+```bash
+git clone https://github.com/home2ego/my-2048.git
+cd my-2048
+npm install    # or pnpm install / yarn install
+npm run dev    # or pnpm dev / yarn dev
