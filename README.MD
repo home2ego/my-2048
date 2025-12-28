@@ -79,5 +79,5 @@ Overall, it reminded me why I love building things: you start with a blank page 
 
 1. `git clone https://github.com/home2ego/my-2048.git`
 2. `cd my-2048`
-3. `npm install` // or `pnpm install` / `yarn install`
-4. `npm run dev` // or `pnpm dev` / `yarn dev`
+3. `npm install` (or `pnpm install`/`yarn install`)
+4. `npm run dev` (or `pnpm dev`/`yarn dev`)
