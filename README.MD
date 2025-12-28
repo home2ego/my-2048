@@ -18,6 +18,8 @@ This project started as a fun challenge to implement game logic in **vanilla Typ
 - `SCSS`
 - `HTML5`
 - `Vite`
+- `Biome`
+- `Stylelint`
 
 Pure vanilla implementation - no frameworks.
 
