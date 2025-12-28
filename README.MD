@@ -8,7 +8,7 @@ This project started as a fun challenge to implement game logic in **vanilla Typ
 
 ### Quick Demo
 
-![2048 Gameplay](docs/gameplay.gif)
+![2048 Gameplay](docs/demo.gif)
 
 ## 📦 Technologies
 
