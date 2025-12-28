@@ -1,4 +1,4 @@
-# 2048 Game
+# 🎮 2048 Game
 
 A clone of the classic **2048** puzzle game, built from scratch with a strong focus on smooth animations, accessibility, and cross-device compatibility.
 
@@ -6,7 +6,7 @@ This project started as a fun challenge to implement game logic in **vanilla Typ
 
 **[Play it now!](https://my-2048.pages.dev/)** 🚀
 
-## 1. Technologies
+## 🧰 Technologies
 
 - **TypeScript**
 - **SCSS**
@@ -15,7 +15,7 @@ This project started as a fun challenge to implement game logic in **vanilla Typ
 
 Pure vanilla implementation - no frameworks.
 
-## 2. Features
+## ✨ Features
 
 - Smooth tile animations
 - Full keyboard support (arrow keys `⬆️ ⬇️ ⬅️ ➡️` + `R` to restart)
@@ -25,13 +25,14 @@ Pure vanilla implementation - no frameworks.
 - Game over state when no moves are left
 - Fully responsive layout for any screen size
 
-### Accessibility:
+## ♿ Accessibility:
+
 - ARIA live regions to announce moves and game state (start, win, lose) for screen reader users
 - Auto-focus management on restart button in win/lose overlay
 - Decorative elements removed from the **Accessibility Tree** to reduce noise
 - Respects `prefers-reduced-motion` - animations are disabled for motion-sensitive users
 
-## 3. How to Play
+## 🕹️ How to Play
 
 - **Desktop**: Use arrow keys `⬆️ ⬇️ ⬅️ ➡️` to move tiles. Press `R` to restart
 - **Mobile/Tablet**: Swipe to move tiles
@@ -40,7 +41,7 @@ Pure vanilla implementation - no frameworks.
 - Reach the **2048** tile to win
 - Game ends when the grid is full and no moves are possible
 
-## 4. How Can It Be Improved?
+## 🚀 How Can It Be Improved?
 
 There’s still plenty of room to make the game even better. Here are some ideas I've been thinking about:
 
@@ -60,7 +61,7 @@ There’s still plenty of room to make the game even better. Here are some ideas
 
 If you have any other ideas, feel free to send a PR - I'd love to see what you come up with! 😄
 
-## 5. What I Learned
+## 📚 What I Learned
 
 Building this little game taught me way more than I expected:
 
@@ -74,11 +75,9 @@ Building this little game taught me way more than I expected:
 
 Overall, it reminded me why I love building things: you start with a blank page and end up with something interactive that just *feels* nice to use.
 
-## 6. Running the Project
+## ▶️ Running the Project
 
-```
-git clone https://github.com/home2ego/my-2048.git
-cd my-2048
-npm install     # or pnpm install / yarn install
-npm run dev     # or pnpm dev / yarn dev
-```
+1. git clone https://github.com/home2ego/my-2048.git
+2. cd my-2048
+3. npm install     # or pnpm install / yarn install
+4. npm run dev     # or pnpm dev / yarn dev
