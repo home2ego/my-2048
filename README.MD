@@ -6,12 +6,12 @@ This project started as a fun challenge to implement game logic in **vanilla Typ
 
 **[Play it now!](https://my-2048.pages.dev/)** 🚀
 
-## 🧰 Technologies
+## 📦 Technologies
 
-- **TypeScript**
-- **SCSS**
-- **HTML5**
-- **Vite**
+- `TypeScript`
+- `SCSS`
+- `HTML5`
+- `Vite`
 
 Pure vanilla implementation - no frameworks.
 
@@ -41,7 +41,7 @@ Pure vanilla implementation - no frameworks.
 - Reach the **2048** tile to win
 - Game ends when the grid is full and no moves are possible
 
-## 🚀 How Can It Be Improved?
+## 💭 How Can It Be Improved?
 
 There’s still plenty of room to make the game even better. Here are some ideas I've been thinking about:
 
@@ -75,11 +75,9 @@ Building this little game taught me way more than I expected:
 
 Overall, it reminded me why I love building things: you start with a blank page and end up with something interactive that just *feels* nice to use.
 
-## ▶️ Running the Project
+## 🚦 Running the Project
 
-```
-git clone https://github.com/home2ego/my-2048.git
-cd my-2048
-npm install     # or pnpm install / yarn install
-npm run dev     # or pnpm dev / yarn dev
-```
+1. `git clone https://github.com/home2ego/my-2048.git`
+2. `cd my-2048`
+3. `npm install` // or `pnpm install` / `yarn install`
+4. `npm run dev` // or `pnpm dev` / `yarn dev`
