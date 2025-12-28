@@ -4,12 +4,16 @@ A clone of the classic **2048** puzzle game, built from scratch with a strong fo
 
 This project started as a fun challenge to implement game logic in **vanilla TypeScript** without relying on heavy frameworks — and ended up being one of my favorite personal projects.
 
-**[Play it now!](https://my-2048.pages.dev/)** 🚀
-
-### Quick Demo
+<a
+  href="https://my-2048.pages.dev/"
+  target="_blank"
+  style="font-size: 24px;"
+>
+  <strong>Play it now!</strong> 🚀
+</a>
 
 <div align="center">
-  <a href="https://my-2048.pages.dev/">
+  <a href="https://my-2048.pages.dev/" target="_blank">
     <img src="docs/demo.gif" width="400" alt="Demo" />
   </a>
 </div>
