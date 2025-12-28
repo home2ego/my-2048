@@ -33,7 +33,7 @@ Pure vanilla implementation - no frameworks.
 - Game over state when no moves are left
 - Fully responsive layout for any screen size
 
-## ♿ Accessibility:
+## ♿ Accessibility
 
 - ARIA live regions to announce moves and game state (start, win, lose) for screen reader users
 - Auto-focus management on restart button in win/lose overlay
@@ -53,17 +53,17 @@ Pure vanilla implementation - no frameworks.
 
 There’s still plenty of room to make the game even better. Here are some ideas I've been thinking about:
 
-### Gameplay:
+### Gameplay
 - Allow players to **continue playing after reaching 2048**
 - Add an **Undo move** mechanic + keyboard shortcut (`Ctrl + Z`)
 - Add a limited **Swap two tiles** mechanic
 - Occasionally spawn a `4` instead of always a `2` (like 10% chance)
 
-### Visuals & UX:
+### Visuals & UX
 - Add a dark/light theme toggle (I'd like to experiment with the new `light-dark()` CSS function instead of relying solely on `prefers-color-scheme`, which I normally use)
 - Subtle sound effects for moves and merges - satisfying, not annoying
 
-### Technical & Scaling:
+### Technical & Scaling
 - Support different board sizes (`3×3`, `5×5`)
 - Simple leaderboard - starting with local high scores, possibly expanding to a small backend for global rankings
 
