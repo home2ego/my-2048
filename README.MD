@@ -1,10 +1,12 @@
 # 2048 Game
 
-A clone of the classic **2048** puzzle game, built from scratch with a strong focus on smooth animations, accessibility, and cross-device compatibility.
+A clone of the classic **2048** puzzle game, built from scratch with a strong focus on performance, smooth animations, accessibility, and cross-device compatibility.
 
-This project started as a fun challenge to implement game logic in **vanilla TypeScript** without relying on heavy frameworks — and ended up being one of my favorite personal projects.
+This project started as a fun challenge to implement game logic in **vanilla TypeScript** without relying on heavy frameworks, and eventually became one of my favorite personal projects.
 
-## [Play it now!](https://my-2048.pages.dev/) 🚀
+## 🚀 Live Demo
+
+Experience the game live at: https://my-2048.pages.dev/
 
 <div align="center">
   <a href="https://my-2048.pages.dev/">
@@ -14,34 +16,39 @@ This project started as a fun challenge to implement game logic in **vanilla Typ
 
 ## 📦 Technologies
 
-- `TypeScript`
-- `SCSS`
-- `HTML5`
-- `Vite`
-- `Biome`
-- `Stylelint`
+### Core
+- `TypeScript` — Type safety and game logic
+- `SCSS` — Styling
+- `HTML5` — Structure
 
-Pure vanilla implementation - no frameworks.
+### Development & Deployment
+- `Vite` — Build tool
+- `Biome` — Formatting & linting
+- `Stylelint` — SCSS linting
+- `Cloudflare` — Hosting and deployment
 
 ## ✨ Features
-
 - Smooth tile animations
-- Full keyboard support (arrow keys `⬆️ ⬇️ ⬅️ ➡️` + `R` to restart)
-- Touch/swipe controls for mobile & tablet
 - Score tracking with persistent best score (via `localStorage`)
 - Win state when reaching the **2048** tile
 - Game over state when no moves are left
 - Fully responsive layout for any screen size
 
-## ♿ Accessibility
+## ⚡ Performance
+- GPU-accelerated animations using `transform` and CSS transitions
+- No layout thrashing (`left` / `top` avoided entirely)
+- Minimal DOM updates per move
 
-- ARIA live regions to announce moves and game state (start, win, lose) for screen reader users
-- Auto-focus management on restart button in win/lose overlay
-- Decorative elements removed from the **Accessibility Tree** to reduce noise
-- Respects `prefers-reduced-motion` - animations are disabled for motion-sensitive users
+## ♿ Accessibility
+- ARIA live regions announce:
+  - Tile merges
+  - Game start
+  - Win and loss states
+- Auto-focus on the `Play again` button in win/lose overlays
+- Decorative elements excluded from the **Accessibility Tree**
+- Respects `prefers-reduced-motion`
 
 ## 🕹️ How to Play
-
 - **Desktop**: Use arrow keys `⬆️ ⬇️ ⬅️ ➡️` to move tiles. Press `R` to restart
 - **Mobile/Tablet**: Swipe to move tiles
 - Tiles with the same number merge when they collide (e.g. `2 + 2 = 4`)
@@ -51,7 +58,7 @@ Pure vanilla implementation - no frameworks.
 
 ## 💭 How Can It Be Improved?
 
-There’s still plenty of room to make the game even better. Here are some ideas I've been thinking about:
+There's still plenty of room to make the game even better. Here are some ideas I've been thinking about:
 
 ### Gameplay
 - Allow players to **continue playing after reaching 2048**
