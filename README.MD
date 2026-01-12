@@ -10,7 +10,7 @@ Experience the game live at: https://my-2048.pages.dev/
 
 <div align="center">
   <a href="https://my-2048.pages.dev/">
-    <img src="docs/demo.gif" width="400" alt="Demo" />
+    <img src="docs/demo.gif" width="500" height="350" alt="A clone of the classic 2048 puzzle game" />
   </a>
 </div>
 
