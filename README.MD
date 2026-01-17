@@ -6,7 +6,7 @@ This project started as a fun challenge to implement game logic in **vanilla Typ
 
 ## 🚀 Live Demo
 
-Experience the game live at: https://my-2048.pages.dev/
+Try it here: https://my-2048.pages.dev/
 
 <div align="center">
   <a href="https://my-2048.pages.dev/">
@@ -17,13 +17,13 @@ Experience the game live at: https://my-2048.pages.dev/
 ## 📦 Technologies
 
 ### Core
-- `TypeScript` — Type safety and game logic
+- `TypeScript` — Game logic and type safety
 - `SCSS` — Styling
 - `HTML5` — Structure
 
 ### Development & Deployment
 - `Vite` — Build tool
-- `Biome` — Formatting & linting
+- `Biome` — Code quality and formatting
 - `Stylelint` — SCSS linting
 - `Cloudflare` — Hosting and deployment
 
