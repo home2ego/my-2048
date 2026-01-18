@@ -45,7 +45,7 @@ I used a 2D array to represent the game board and TypeScript interfaces to ensur
 # Clone the repository
 git clone https://github.com/home2ego/my-2048.git
 
-# Go to repository
+# Navigate to directory
 cd my-2048
 
 # Install dependencies
