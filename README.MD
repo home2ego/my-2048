@@ -39,7 +39,7 @@ I created a custom touch-start/touch-end handler to manage mobile swipes without
 3. **State Management in Vanilla TS**  
 I used a 2D array to represent the game board and TypeScript interfaces to ensure type safety across movement and merge logic, reducing runtime bugs during complex merge calculations.
 
-## 🚦 Development Setup
+## 🚦 How to Run
 
 ```bash
 # Clone the repository
