@@ -11,12 +11,12 @@ A clone of the 2048 puzzle game built with **Vanilla TypeScript**. This project 
 </div>
 
 ## 🛠️ Technical Stack
-`TypeScript` (Vanilla) — Game logic  
-`SCSS` — Styling  
-`Vite` — Build tool  
-`Biome`, `Stylelint` — Linting
+- `TypeScript` (Vanilla) — Game logic
+- `SCSS` — Styling
+- `Vite` — Build tool
+- `Biome`, `Stylelint` — Linting
 
-## ✨ Key Features
+## 💡 Key Features
 - **Custom Game Logic**: Full implementation of tile merging, spawning, and move validation.
 - **Persistence**: `localStorage` integration for high-score tracking.
 - **Cross-Platform**: Touch-event swipe detection for mobile and keyboard listeners for desktop.
@@ -28,15 +28,15 @@ A clone of the 2048 puzzle game built with **Vanilla TypeScript**. This project 
 - **Reduced Motion**: Support for `prefers-reduced-motion` media queries.
 
 
-## 🧠 Technical Challenges & Solutions
+## 📝 Technical Challenges & Solutions
 
-1. Efficient DOM Updates:
-I implemented logic that updates only the necessary tiles, using CSS transform for movement instead of `top/left`. I ensured animations remain at 60fps by staying within the "Composite" layer of the rendering pipeline, avoiding the "Layout" phase.
+1. **Efficient DOM Updates**  
+I implemented logic that updates only the necessary tiles, using CSS `transform` for movement instead of `top/left`. I ensured animations remain at 60fps by staying within the "Composite" layer of the rendering pipeline, avoiding the "Layout" phase.
 
-2. Touch Logic Implementation:
+2. **Touch Logic Implementation**  
 I created a custom touch-start/touch-end handler to manage mobile swipes without a library. This involved calculating vector deltas and setting a minimum threshold to distinguish swipes from accidental taps.
 
-3. State Management in Vanilla TS:
+3. **State Management in Vanilla TS**  
 I used a 2D array to represent the game board and TypeScript interfaces to ensure type safety across movement and merge logic, reducing runtime bugs during complex merge calculations.
 
 ## 🚦 Development Setup
