@@ -1,99 +1,55 @@
-# 2048 Game
+# 2048 Clone (Vanilla TypeScript)
 
-A clone of the classic **2048** puzzle game, built from scratch with a strong focus on performance, smooth animations, accessibility, and cross-device compatibility.
+A clone of the 2048 puzzle game built with **Vanilla TypeScript**. This project focuses on DOM manipulation, custom event handling, and accessible UI patterns without the use of external frameworks.
 
-This project started as a fun challenge to implement game logic in **vanilla TypeScript** without relying on heavy frameworks, and eventually became one of my favorite personal projects.
-
-## 🚀 Live Demo
-
-Try it here: https://my-2048.pages.dev/
+## [Live Demo](https://my-2048.pages.dev/)
 
 <div align="center">
   <a href="https://my-2048.pages.dev/">
-    <img src="docs/demo.gif" width="500" height="350" alt="A clone of the classic 2048 puzzle game" />
+    <img src="docs/demo.gif" width="500" height="350" alt="Gameplay preview of a 2048 puzzle game clone" />
   </a>
 </div>
 
-## 📦 Technologies
+## 🛠️ Technical Stack
+`TypeScript` (Vanilla) — Game logic  
+`SCSS` — Styling  
+`Vite` — Build tool  
+`Biome`, `Stylelint` — Linting
 
-### Core
-- `TypeScript` — Game logic and type safety
-- `SCSS` — Styling
-- `HTML5` — Structure
+## ✨ Key Features
+- **Custom Game Logic**: Full implementation of tile merging, spawning, and move validation.
+- **Persistence**: `localStorage` integration for high-score tracking.
+- **Cross-Platform**: Touch-event swipe detection for mobile and keyboard listeners for desktop.
+- **Performance Optimized**: CSS transforms for GPU-accelerated animations, avoiding layout thrashing.
 
-### Development & Deployment
-- `Vite` — Build tool
-- `Biome` — Code quality and formatting
-- `Stylelint` — SCSS linting
-- `Cloudflare` — Hosting and deployment
+## ♿ Accessibility (A11y)
+- **Screen Readers**: Integrated ARIA live regions to announce tile merges and game states (win/loss).
+- **Focus Management**: Automatic focus trapping on both game-over and win modals for keyboard navigation.
+- **Reduced Motion**: Support for `prefers-reduced-motion` media queries.
 
-## ✨ Features
-- Smooth tile animations
-- Score tracking with persistent best score (via `localStorage`)
-- Win state when reaching the **2048** tile
-- Game over state when no moves are left
-- Fully responsive layout for any screen size
 
-## ⚡ Performance
-- GPU-accelerated animations using `transform` and CSS transitions
-- No layout thrashing (`left` / `top` avoided entirely)
-- Minimal DOM updates per move
+## 🧠 Technical Challenges & Solutions
 
-## ♿ Accessibility
-- ARIA live regions announce:
-  - Tile merges
-  - Game start
-  - Win and loss states
-- Auto-focus on the `Play again` button in win/lose overlays
-- Decorative elements excluded from the **Accessibility Tree**
-- Respects `prefers-reduced-motion`
+1. Efficient DOM Updates:
+I implemented logic that updates only the necessary tiles, using CSS transform for movement instead of `top/left`. I ensured animations remain at 60fps by staying within the "Composite" layer of the rendering pipeline, avoiding the "Layout" phase.
 
-## 🕹️ How to Play
-- **Desktop**: Use arrow keys `⬆️ ⬇️ ⬅️ ➡️` to move tiles. Press `R` to restart
-- **Mobile/Tablet**: Swipe to move tiles
-- Tiles with the same number merge when they collide (e.g. `2 + 2 = 4`)
-- A new tile (`2`) spawns after each valid move
-- Reach the **2048** tile to win
-- Game ends when the grid is full and no moves are possible
+2. Touch Logic Implementation:
+I created a custom touch-start/touch-end handler to manage mobile swipes without a library. This involved calculating vector deltas and setting a minimum threshold to distinguish swipes from accidental taps.
 
-## 💭 How Can It Be Improved?
+3. State Management in Vanilla TS:
+I used a 2D array to represent the game board and TypeScript interfaces to ensure type safety across movement and merge logic, reducing runtime bugs during complex merge calculations.
 
-There's still plenty of room to make the game even better. Here are some ideas I've been thinking about:
-
-### Gameplay
-- Allow players to **continue playing after reaching 2048**
-- Add an **Undo move** mechanic + keyboard shortcut (`Ctrl + Z`)
-- Add a limited **Swap two tiles** mechanic
-- Occasionally spawn a `4` instead of always a `2` (like 10% chance)
-
-### Visuals & UX
-- Add a dark/light theme toggle (I'd like to experiment with the new `light-dark()` CSS function instead of relying solely on `prefers-color-scheme`, which I normally use)
-- Subtle sound effects for moves and merges - satisfying, not annoying
-
-### Technical & Scaling
-- Support different board sizes (`3×3`, `5×5`)
-- Simple leaderboard - starting with local high scores, possibly expanding to a small backend for global rankings
-
-If you have any other ideas, feel free to send a PR - I'd love to see what you come up with! 😄
-
-## 📚 What I Learned
-
-Building this little game taught me way more than I expected:
-
-- How much you can actually achieve with just vanilla TypeScript - no need for a big framework for everything
-- Getting animations to feel "buttery smooth" is all about the small details:
-    - Using `transform` (which only triggers the composite stage in the **Rendering (Pixel) Pipeline**) instead of `left/top` that force layout and paint steps
-    - Keeping DOM updates minimal
-    - Letting the browser handle the animation work with CSS transitions instead of JavaScript
-- Touch swipe detection is trickier than it looks - figuring out the direction reliably without false positives took a few iterations
-- Adding live regions and proper focus management made me realize how much a few ARIA attributes can improve the experience for screen reader users - and it's not that hard once you get the pattern.
-
-Overall, it reminded me why I love building things: you start with a blank page and end up with something interactive that just *feels* nice to use.
-
-## 🚦 Running the Project
+## 🚦 Development Setup
 
 ```bash
+# Clone the repository
 git clone https://github.com/home2ego/my-2048.git
+
+# Go to repository
 cd my-2048
-npm install    # or pnpm install / yarn install
-npm run dev    # or pnpm dev / yarn dev
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
