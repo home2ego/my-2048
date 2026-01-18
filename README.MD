@@ -2,7 +2,7 @@
 
 A clone of the 2048 puzzle game built with **Vanilla TypeScript**. This project focuses on DOM manipulation, custom event handling, and accessible UI patterns without the use of external frameworks.
 
-<a href="https://my-2048.pages.dev/" style="font-size: 24px; text-decoration: none;">Live Demo</a>
+[Live Demo](https://my-2048.pages.dev/)
 
 <div align="center">
   <a href="https://my-2048.pages.dev/">
