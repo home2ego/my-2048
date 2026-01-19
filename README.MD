@@ -23,9 +23,9 @@ A clone of the 2048 puzzle game built with **Vanilla TypeScript**. This project 
 - **Performance Optimized**: CSS transforms for GPU-accelerated animations, avoiding layout thrashing.
 
 ## ♿ Accessibility (A11y)
-- **Screen Readers**: Integrated ARIA live regions to announce tile merges and game states (win/loss).
+- **Screen Readers**: ARIA live regions for dynamic updates to announce tile merges and game states (win/loss).
 - **Focus Management**: Automatic focus trapping on both game-over and win modals for keyboard navigation.
-- **Reduced Motion**: Support for `prefers-reduced-motion` media queries.
+- **Reduced Motion**: Support for the `prefers-reduced-motion` media query.
 
 
 ## 📝 Technical Challenges & Solutions
